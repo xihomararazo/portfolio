@@ -63,9 +63,9 @@ const Title = styled(H1)`
   }
 `;
 const LottieWrapper = styled.div`
-  width: 600px;
-  height: 600px;
-  margin: 0px auto;
+  width: 450px;
+  height: 450px;
+  margin: 50px auto;
   outline: none;
 
   @media (max-width: 750px) {

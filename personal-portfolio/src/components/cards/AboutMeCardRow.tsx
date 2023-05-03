@@ -6,6 +6,7 @@ import { MediumText } from '../../styles/TextStyles';
 interface AboutMeCardRowProps {
   title: string;
   value: string | number;
+  isLink?: boolean;
 }
 
 const AboutMeCardRow = (props: AboutMeCardRowProps) => {
@@ -17,7 +18,18 @@ const AboutMeCardRow = (props: AboutMeCardRowProps) => {
       return value;
     }
   };
-
+  if (props.isLink) {
+    return (
+      <InfoDetailBox>
+        <InfoKey>{props.title}</InfoKey>
+        <InfoValueWrapper>
+          <StyledNavLink href={formatDate(props.value)}>
+            <LinkText>{formatDate(props.value)}</LinkText>
+          </StyledNavLink>
+        </InfoValueWrapper>
+      </InfoDetailBox>
+    );
+  }
   return (
     <InfoDetailBox>
       <InfoKey>{props.title}</InfoKey>
@@ -52,6 +64,20 @@ const InfoValue = styled(MediumText)`
 
   @media (prefers-color-scheme: dark) {
     color: ${themes.dark.text1};
+  }
+`;
+const LinkValue = styled.a``;
+const LinkText = styled(MediumText)``;
+
+const StyledNavLink = styled(LinkValue)`
+  color: ${themes.light.primary};
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: ${themes.dark.secondary};
+  }
+  &:active {
+    color: red;
   }
 `;
 

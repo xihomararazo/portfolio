@@ -1,13 +1,13 @@
 {
     "meta": {
-        "title": "Portfolio",
-        "description": "Personal Portfolio Webpage"
+        "title": "XihoDev",
+        "description": "Portfolio Personal Webpage"
     },
     "app": {
-        "title": "Bienvenid@s a mi Web Portfolio"
+        "title": "Solo una taza de café y comenzamos"
     },
     "landing": {
-        "title": "Bienvenido a mi Portfolio"
+        "title": "Solo una taza de café y comenzamos"
     },
     "loader" : {
         "text": "cargando..."

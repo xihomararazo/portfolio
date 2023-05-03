@@ -4,7 +4,7 @@ import { Project } from '../model/project';
 export const mockLogin = (userName: string, password: string) =>
   new Promise<TokenResponse>(function (resolve, rejected) {
     setTimeout(() => {
-      if (userName === 'user@threepoints.com' && password === 'patata') {
+      if (userName === 'xihomararazo@gmail.com' && password === 'Xiho1234') {
         resolve(
           JSON.parse(
             `{
@@ -32,11 +32,11 @@ export const mockAboutme = () =>
         JSON.parse(
           `{
             "id":"12389asdfasf8",
-            "name":"Lucas Fernández Aragón",
-            "birthday":765817712000,
-            "nationality":"Spain",
-            "job":"Red Hat",
-            "github":"https://github.com/lucferbux"
+            "name":"Xihomara Livier Razo Vargas",
+            "birthday":775548000000,
+            "nationality":"Mexicana",
+            "job":"Colektor",
+            "github":"https://github.com/xihomararazo"
             }`
         )
       );
@@ -122,6 +122,24 @@ export const mockProjects = () =>
                 "timestamp":"765817712007"
                 }
             ]`
+        )
+      );
+    }, 500);
+  });
+  export const mockCreateProject = (title:string,description:string,tags:string,version:string) =>
+  new Promise<Project>(function (resolve) {
+    setTimeout(() => {
+      resolve(
+        JSON.parse(
+          `{
+            "id":"12349as8df90",
+            "title":"Unity",
+            "description":"Unity es un cross-platform game engine desarrollado por Unity Technologies.",
+            "version":"17.0.1",
+            "link":"https://unity.com/es",
+            "tag":"c#",
+            "timestamp":"765817712000"
+            }`
         )
       );
     }, 500);
