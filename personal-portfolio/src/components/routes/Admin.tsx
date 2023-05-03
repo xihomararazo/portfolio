@@ -19,7 +19,7 @@ const Admin = () => {
   const [version, setVersion] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
-  function doDelete(event: React.MouseEventHandler<HTMLButtonElement>) {
+  function doDelete( event: React.MouseEvent<HTMLButtonElement>) {
     dismissError();
     event.preventDefault();
     setTitle('');
