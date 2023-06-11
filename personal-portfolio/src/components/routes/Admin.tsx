@@ -2,22 +2,22 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import useApp from '../../hooks/useApp';
 
 import { themes } from '../../styles/ColorStyles';
 import { Caption, H1 } from '../../styles/TextStyles';
 import { mockCreateProject } from '../../utils/mock-response';
+import Loader from '../elements/Loader';
 
 const Admin = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { addNotification, removeLastNotification } = useApp();
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
   const [version, setVersion] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function doDelete( event: React.MouseEvent<HTMLButtonElement>) {
     dismissError();
@@ -29,24 +29,22 @@ const Admin = () => {
   }
   async function doProjectInput(event: FormEvent<HTMLFormElement>) {
     dismissError();
-
     event.preventDefault();
 
     if (!readyToSubmit()) {
       setErrorMsg(t('admin.err_invalid_form'));
       return;
     }
-
+    setIsLoading(true);
     try {
-      addNotification(t('loader.text'));
-      //console.log(title,description,tags,version);
       await mockCreateProject(title, description, tags, version);
       navigate('/dashboard');
     } catch (e) {
       setErrorMsg(t('admin.err_invalid_form'));
     } finally {
-      removeLastNotification();
+      setIsLoading(false);
     }
+
   }
 
   function onChangeAnyInput() {
@@ -82,6 +80,7 @@ const Admin = () => {
 
   return (
     <Wrapper>
+      {isLoading && <Loader message={t('loader.text')} />}
       <ContentWrapper>
         <TitleForm>{t('admin.header')}</TitleForm>
         <LoginPannel onSubmit={doProjectInput}>

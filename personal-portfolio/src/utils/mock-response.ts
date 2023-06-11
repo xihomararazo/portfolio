@@ -25,6 +25,19 @@ export interface ApiError {
 }
 export class Unauthorized implements ApiError {}
 
+export interface DashboardInfo {
+  aboutMe: AboutMe;
+  projects: Project[];
+}
+
+export const mockFetchDashboard = () =>
+  Promise.all([mockAboutme(), mockProjects()]).then(([aboutMe, projects]) => {
+    return {
+      aboutMe,
+      projects
+    };
+  });
+
 export const mockAboutme = () =>
   new Promise<AboutMe>(function (resolve) {
     setTimeout(() => {
@@ -40,7 +53,7 @@ export const mockAboutme = () =>
             }`
         )
       );
-    }, 500);
+    }, 1000);
   });
 
 export const mockProjects = () =>
@@ -126,7 +139,14 @@ export const mockProjects = () =>
       );
     }, 500);
   });
-  export const mockCreateProject = (title:string,description:string,tags:string,version:string) =>
+
+
+export const mockCreateProject = (
+  title: string,
+  description: string,
+  tags: string,
+  version: string
+) =>
   new Promise<Project>(function (resolve) {
     setTimeout(() => {
       resolve(
@@ -142,5 +162,5 @@ export const mockProjects = () =>
             }`
         )
       );
-    }, 500);
+    }, 2000);
   });

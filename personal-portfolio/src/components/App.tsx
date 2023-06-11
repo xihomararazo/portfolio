@@ -9,27 +9,25 @@ import Admin from './routes/Admin';
 import PrivateRoute from './routes/PrivateRoute';
 
 const App = () => {
-  // TODO: Change redirect to Dashboard
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route
-            path="admin"
-            element={
-              <PrivateRoute>
-                <Admin />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="." replace />} />
-        </Routes>
-        <Loader />
-      </Layout>
-    </Router>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="admin"
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="." replace />} />
+      </Routes>
+    </Layout>
+  </Router>
   );
 };
 
